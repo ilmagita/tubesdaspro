@@ -3,7 +3,6 @@ import arraytools as at
 
 
 def tambahgame(matriksgamedata):
-    print(">>> tambah_game")
     nama = input("Masukkan nama game: ")
     kategori = input("Masukkan kategori: ")
     tahun_rilis = input("Masukkan tahun rilis: ")
@@ -15,7 +14,8 @@ def tambahgame(matriksgamedata):
     panjangid = at.panjangarray(str(baris))
 
     if nama and kategori and tahun_rilis and harga and stok_awal:
-        matriksgamedata += [['' for i in range(kolom)]]
+        matrikskosong = [['' for i in range(kolom)]]
+        matriksgamedata = at.append(matriksgamedata, matrikskosong)
 
         id = 'GAME'
         for i in range(3 - panjangid):
@@ -28,10 +28,11 @@ def tambahgame(matriksgamedata):
         matriksgamedata[baris][3] = tahun_rilis
         matriksgamedata[baris][4] = harga
         matriksgamedata[baris][5] = stok_awal
-        csvt.writecsv(matriksgamedata, 'tes.csv')
+        print(f"Selamat! Berhasil menambahkan game {nama}")
+        return matriksgamedata
     else:
         print("Mohon masukkan semua informasi mengenai game agar dapat disimpan BNMO.")
         tambahgame(matriksgamedata)
 
-
-tambahgame(csvt.csvtoarray('game.csv'))
+    # Aplikasi
+    # tambahgame(csvt.csvtoarray('game.csv'))

@@ -1,7 +1,8 @@
 import arraytools as AT
+import os
 
 
-def csvtoarray(file):
+def csvtoarray(namafolder, namafile):
     # Definisi dan Spesifikasi
     # Menerima nama file CSV lalu membuat matrix (array of array) berdasarkan isi csv tersebut
 
@@ -9,7 +10,7 @@ def csvtoarray(file):
     #
 
     # ALGORITMA
-    openedfile = open(f'CSVFiles/{file}', 'r')
+    openedfile = open(f'{namafolder}/{namafile}', 'r')
     string = openedfile.read()
     openedfile.close()
 
@@ -41,7 +42,7 @@ def csvtoarray(file):
     # userdata = csvtoarray('user.csv')
 
 
-def writecsv(matrix, namafile):
+def writecsv(matrix, namafolder, namafile):
     banyakbaris = AT.panjangarray(matrix)
     banyakkolom = AT.panjangarray(matrix[0])
 
@@ -55,9 +56,25 @@ def writecsv(matrix, namafile):
         if i != (banyakbaris - 1):
             string += '\n'
 
-    openedfile = open(f'CSVFiles/{namafile}', 'w')
+    print("Saving...")
+
+    if not isfoldervalid(namafolder):
+        os.makedirs(namafolder)
+
+    openedfile = open(f'{namafolder}/{namafile}', 'w')
     openedfile.write(string)
     openedfile.close()
 
+    print(f"Data telah disimpan pada folder {namafolder}")
+
     # Aplikasi
-    # writecsv(userdata, 'user.csv')
+    # writecsv(userdata, 'CSVFiles', 'user.csv')
+
+
+def isfoldervalid(namafolder):
+    folderpython = os.getcwd()
+    foldertujuan = os.path.join(folderpython, rf'{namafolder}')
+    if not os.path.exists(foldertujuan):
+        return False
+    else:
+        return True
