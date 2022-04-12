@@ -1,32 +1,42 @@
-import csvtools as csvt
+# Main Program dari Binomo
+
+# KAMUS
+# perintah : string
+# stop, haslogin : boolean
+# loggeduserdata : array of string
+# database : array of array of array of array of string
+# datasementara : array of [database, loggeduserdata]
+
+# File yang diimport
 import arraytools as at
-import f15
 import maintools as mt
 import f03
+import f15
 import f17
+import b03
 
 
-database = f15.load()
+# Loading Database dengan memanggil fungsi load
+database = f15.load()  # database = [userdata, gamedata, riwayatdata, kepemilikandata]
 
-# Akses Perintah:
-# User : F3, F7, F8, F9, F10, F11, F13, F14, F16, F17
-# Admin : F2, F3, F4, F5, F6, F7, F11, F12, F14, F16, F17
+stop = False  # Variabel untuk mengecek apakah program tetap dijalankan
+haslogin = False  # Variabel untuk mengecek apakah pengguna sudah melakukan login
 
-stop = False
-haslogin = False
-logindata = []
-loggeduserdata = []
-
-while not stop:
+while not stop:  # Program akan selalu berjalan selama stop bernilai False
     perintah = input("\n>>> ")
     if perintah == "printdata":
+        print(loggeduserdata)
+        print()
         for i in range(4):
             at.printmatrix(database[i])
-    elif mt.isperintahvalid(perintah):
+            print()
+    elif mt.isperintahvalid(perintah):  # Mengecek apakah perintah yang dimasukkan valid
         if haslogin:
             if perintah == "exit":
                 stop = f17.exit(database)
                 print('Terima kasih telah menggunakan "Binomo"')
+            elif perintah == "tictactoe":
+                b03.tictactoe()
             elif mt.isadmin(loggeduserdata):
                 datasementara = mt.doperintahadmin(perintah, database, loggeduserdata)
                 database = datasementara[0]
