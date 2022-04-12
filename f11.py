@@ -11,10 +11,11 @@ def search_game(matriksgamedata):
     arrayoffilter = [gameid, nama, kategori, tahun_rilis,  harga]
     filtereddata = [matriksgamedata[0]]
     kolom = at.panjangarray(arrayoffilter)
+    baris = at.panjangarray(matriksgamedata)
     matrikskosong = [['' for i in range(kolom)]]
     k = 1
     ada = False
-    for i in range(1, kolom):
+    for i in range(1, baris):
         j = 0
         memenuhi = True
         while j < kolom and memenuhi:

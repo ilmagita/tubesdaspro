@@ -1,4 +1,4 @@
-import arraytools as AT
+import arraytools as at
 import os
 
 
@@ -43,8 +43,8 @@ def csvtoarray(namafolder, namafile):
 
 
 def writecsv(matrix, namafolder, namafile):
-    banyakbaris = AT.panjangarray(matrix)
-    banyakkolom = AT.panjangarray(matrix[0])
+    banyakbaris = at.panjangarray(matrix)
+    banyakkolom = at.panjangarray(matrix[0])
 
     string = ''
 
@@ -56,16 +56,12 @@ def writecsv(matrix, namafolder, namafile):
         if i != (banyakbaris - 1):
             string += '\n'
 
-    print("Saving...")
-
     if not isfoldervalid(namafolder):
         os.makedirs(namafolder)
 
     openedfile = open(f'{namafolder}/{namafile}', 'w')
     openedfile.write(string)
     openedfile.close()
-
-    print(f"Data telah disimpan pada folder {namafolder}")
 
     # Aplikasi
     # writecsv(userdata, 'CSVFiles', 'user.csv')
@@ -74,7 +70,7 @@ def writecsv(matrix, namafolder, namafile):
 def isfoldervalid(namafolder):
     folderpython = os.getcwd()
     foldertujuan = os.path.join(folderpython, rf'{namafolder}')
-    if not os.path.exists(foldertujuan):
-        return False
-    else:
+    if os.path.exists(foldertujuan):
         return True
+    else:
+        return False
