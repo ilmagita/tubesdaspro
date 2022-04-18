@@ -13,11 +13,10 @@ import f13
 import f14
 import f16
 
-
 def isperintahvalid(perintah):
     perintahvalid = ["register", "login", "tambah_game", "ubah_game", "ubah_stok", "list_game_toko",
                      "buy_game", "list_game", "search_my_game", "search_game_at_store", "topup", "riwayat",
-                     "help", "save", "exit"]
+                     "help", "save", "exit", "tictactoe"]
     for i in range(at.panjangarray(perintahvalid)):
         if perintah == perintahvalid[i]:
             return True
@@ -84,17 +83,17 @@ def doperintahuser(perintah, database, datauser):
         elif perintah == "list_game_toko":
             f07.listgametoko(database[1])
         elif perintah == "buy_game":
-            datasementara = f08.beligame(database, datauser)
-            database = datasementara[0]
-            datauser = datasementara[1]
+            Temp = f08.beligame(database, datauser)
+            database = Temp[0]
+            datauser = Temp[1]
         elif perintah == "list_game":
-            f09.ownedgame(datauser, database[1], database[3])
+            f09.printlistgame(datauser, database[1], database[3])
         elif perintah == "search_my_game":
-            f10.search_my_game(f09.ownedgame(datauser, database[1], database[3]))
+            f10.search_my_game(datauser, database[1], database[3])
         elif perintah == "search_game_at_store":
             f11.search_game(database[1])
         elif perintah == "riwayat":
-            f13.printriwayat(datauser, database[2])
+            f13.riwayat(datauser, database[2])
         elif perintah == "help":
             f14.list_help(datauser)
         elif perintah == "save":

@@ -13,11 +13,11 @@ import maintools as mt
 import f03
 import f15
 import f17
-import b03
+# import b03
 
 
 # Loading Database dengan memanggil fungsi load
-database = f15.load()  # database = [userdata, gamedata, riwayatdata, kepemilikandata]
+database = f15.startsystem()  # database = [userdata, gamedata, riwayatdata, kepemilikandata]
 
 stop = False  # Variabel untuk mengecek apakah program tetap dijalankan
 haslogin = False  # Variabel untuk mengecek apakah pengguna sudah melakukan login
@@ -35,8 +35,8 @@ while not stop:  # Program akan selalu berjalan selama stop bernilai False
             if perintah == "exit":
                 stop = f17.exit(database)
                 print('Terima kasih telah menggunakan "Binomo"')
-            elif perintah == "tictactoe":
-                b03.tictactoe()
+            # elif perintah == "tictactoe":
+            #     b03.tictactoe()
             elif mt.isadmin(loggeduserdata):
                 datasementara = mt.doperintahadmin(perintah, database, loggeduserdata)
                 database = datasementara[0]
