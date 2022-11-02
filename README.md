@@ -15,4 +15,4 @@ Tugas besar ini meminta untuk membuatkan sebuah program robot game bernama BNMO.
 
 ## How To Run?
 Enter command:
-> py main.py CSV
+  py main.py CSV
